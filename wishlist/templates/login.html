@@ -1,45 +1,125 @@
 {% extends 'base.html' %}
 
-{% block meta %}
-<title>Login</title>
-{% endblock meta %}
-
 {% block content %}
 
-<div class = "login">
+<style>
+    table {
+    font-family: arial, sans-serif;
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    }
+    td {
+        padding-bottom: 5px;
+        display: block;
+        margin: 0 auto;
+    }
+    .login_button {
+    background-color: blueviolet;
+    color: white;
+    padding: 10px 24px;
+    border: 0;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 20px;
+    }
+    .field_selection {
+    width:100%;
+    padding: 12px 24px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 3px solid blueviolet;
+    background-color: white;
+    }
+    textarea {
+    width:100%;
+    padding: 12px 24px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 3px solid blueviolet;
+    }
+    p {
+        text-align: center;
+        font-family: sans-serif;
+    }
+    a:link {
+    color:blueviolet;
+    }
+    a:visited {
+    color: blueviolet;
+    } 
+    ul {
+        font-family: sans-serif;
+        text-align: center;
+    }
+    .container {
+        background-color: white;
+        width: 450px;
+        padding-bottom: 50px;
+        border-radius: 20px;
+        display: block;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+    body {
+        background-color: rgb(188, 182, 249);
+    }
+</style>
 
-    <h1>Login</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta %}
+    <title>Login</title>
+    {% endblock meta %}
+  </head>
+  <body>
+   
+<div class = "login">
 
     <form method="POST" action="">
         {% csrf_token %}
+        <div class="container">
+        <h1 style="text-align: center; color: blueviolet ;padding:32px; font-family:sans-serif">Login</h1>
         <table>
             <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                <td style="text-align: left;">Username</td>
             </tr>
-                    
             <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                <td><input type="text" name="username" placeholder="Username" class="form-control field_selection"></td>
+            </tr> 
+            <tr>
+                <td style="text-align: left;">Password</td>
             </tr>
-
             <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
+                <td ><input type="password" name="password" placeholder="Password" class="form-control field_selection"></td>
+            </tr>
+            <tr>
+                <td ><input class="btn login_btn login_button" type="submit" value="Login"></td>
             </tr>
         </table>
+    </div>
     </form>
 
     {% if messages %}
-        <ul>
             {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+                <p style="color: blueviolet; font-family: sans-serif;font-weight: bold">{{ message }}</p>
+            {% endfor %} 
     {% endif %}     
         
-    Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a>
+    <p style="color: white; padding: 20px; font-family: sans-serif;">Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a></p>
+    
 
 </div>
+  </body>
+
+</html>
+
 
 {% endblock content %}
